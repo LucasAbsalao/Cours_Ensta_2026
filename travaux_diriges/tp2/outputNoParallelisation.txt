@@ -1,0 +1,1 @@
+Temps pris pour la éxécution du produit scalaire : 0.0002040863037109375 secondes

@@ -1,0 +1,20 @@
+Question 1
+Pour 1023
+    Temps CPU produit matrice-matrice naif : 3.88435 secondes
+    MFlops -> 551.238
+
+Pour 1024:
+    Temps CPU produit matrice-matrice naif : 6.3907 secondes
+    MFlops -> 336.032
+
+Pour 1025
+    Temps CPU produit matrice-matrice naif : 2.82895 secondes
+    MFlops -> 761.337
+
+O tempo para fazer a operação com dimensão 1024 é muito maior que os demais.
+Isso ocorre pois as matrizes são salvas de forma linear na memória. Dessa forma, a distância 
+entre 2 colunas da matriz possui exatamente 2^10 inteiros. Portanto, como as potências de 2 são 
+múltiplos de tamanho de cache, o sistema tentará passar as informações da RAM para a cache no 
+mesmo endereço da cache utilizado anteriormente.  Assim, a dimensão de 1024 vai causar cache 
+conflict misses e diminuir muito a performance. Os demais números, 1023 e 1025, não causam
+tantos conflitos de cache.

@@ -10,7 +10,7 @@ $$
     c\,\,\textrm{valeurs\,\,complexe\,\,donnée}\\
     z_{0} = 0 \\
     z_{n+1} = z_{n}^{2} + c
-\end{array}
+\end{array}}
 \right.
 $$
 dépendant du paramètre $c$.
@@ -64,3 +64,12 @@ En effectuant son cacul sur son calculateur, Alice s’aperçoit qu’elle obtie
 
 En doublant la quantité de donnée à traiter, et en supposant la complexité de l’algorithme parallèle linéaire, quelle accélération maximale peut espérer Alice en utilisant la loi de Gustafson ?
 
+# Réponses
+
+## 1
+
+## 2
+
+Le **speed-up** est inférieur à 1 car l'**overhead** de communication lié à la parallélisation est supérieur 
+au temps d'exécution séquentiel des opérations. Il est probable qu'avec une matrice de dimensions plus importantes, 
+la parallélisation devienne plus efficace e t permette d'obtenir un speed-up supérieur à 1.

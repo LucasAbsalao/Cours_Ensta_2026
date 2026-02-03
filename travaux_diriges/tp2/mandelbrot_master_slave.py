@@ -89,7 +89,7 @@ if rank == 0: #Logique Maitre
 
     deb = time.time()
 
-    # 1. Envoyer une première ligne à chaque esclave
+    # 1. Envoyer une première ligne à chaque esclave pour initialiser
     for worker_rank in range(1, nbp):
         if current_row_to_dispatch < height:
             comGlobal.send(current_row_to_dispatch, dest=worker_rank, tag=TAG_WORK)
@@ -100,7 +100,7 @@ if rank == 0: #Logique Maitre
             comGlobal.send(None, dest=worker_rank, tag=TAG_STOP)
 
     # 2. Boucle de gestion dynamique
-    status = MPI.Status() # Pour savoir qui nous répond
+    status = MPI.Status() # Pour savoir qui a envoyé la message
     while active_workers > 0:
         # Recevoir le résultat de n'importe quel esclave (ANY_SOURCE) avec la tag TAG_RESULT
         row_idx, row_data = comGlobal.recv(source=MPI.ANY_SOURCE, tag=TAG_RESULT, status=status)

@@ -1,0 +1,4 @@
+Démarrage Maître-Esclave avec 5 esclaves.
+Temps du calcul de l'ensemble de Mandelbrot : 0.4763
+Speedup Maître-Esclave : 3.3886
+Temps de constitution de l'image : 0.05775952339172363

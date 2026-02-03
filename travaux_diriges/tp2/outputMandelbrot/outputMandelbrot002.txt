@@ -1,0 +1,2 @@
+Temps du calcul de l'ensemble de Mandelbrot : 0.4842960834503174
+Temps de communication du gather: 0.061943769454956055

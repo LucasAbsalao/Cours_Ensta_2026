@@ -49,7 +49,7 @@ class MandelbrotSet:
 
 # On peut changer les paramètres des deux prochaines lignes
 mandelbrot_set = MandelbrotSet(max_iterations=50, escape_radius=10)
-width, height = 1024, 1024
+width, height = 1026, 1026
 
 scaleX = 3./width
 scaleY = 2.25/height
@@ -68,4 +68,5 @@ deb = time()
 image = Image.fromarray(np.uint8(matplotlib.cm.plasma(convergence.T)*255))
 fin = time()
 print(f"Temps de constitution de l'image : {fin-deb}")
+image.save("mandelbrot.png")
 image.show()

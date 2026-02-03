@@ -1,0 +1,5 @@
+Temps du calcul de l'ensemble de Mandelbrot : 0.44657444953918457
+Temps de communication du gather: 0.019605636596679688
+Temps de constitution de l'image : 0.07202863693237305
+speedup sans considéré la communication inter processus: 3.541866653273188
+speedup : 3.27287450488791

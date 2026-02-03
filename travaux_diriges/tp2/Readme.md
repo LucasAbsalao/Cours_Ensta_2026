@@ -68,8 +68,70 @@ En doublant la quantité de donnée à traiter, et en supposant la complexité d
 
 ## 1
 
+### 1
+
+En divisant l'image en 6 blocs horizontaux, nous avons observé ce résultat : les processus centraux (2 et 3) ont été les plus rapides, tandis que les processus périphériques (0, 1, 4, 5) ont pris plus de temps.
+
+Ce phénomène s'explique par l'optimisation implémentée dans le code (le test de la cardioïde et du disque principal).
+
+- Les processus centraux (2 et 3) traitent la majeure partie de l'intérieur de l'ensemble (la zone plus lumineuse). Grâce au test géométrique préalable, l'algorithme détecte immédiatement ces points et retourne le résultat sans entrer dans la boucle de calcul itérative. Le coût de calcul devient alors négligeable ($O(1)$).
+
+- Les processus périphériques (0, 1, 4, 5) traitent les zones de frontière fractale. Pour ces points, le test géométrique échoue, forçant l'algorithme à exécuter la boucle de calcul complète pour déterminer la vitesse de divergence.
+
+En conclusion, bien que l'optimisation accélère drastiquement le traitement du centre, elle aggrave le déséquilibre de charge (load imbalance) en rendant les tâches centrales triviales et plus vites par rapport aux tâches périphériques plus complexes.
+
+**Speed-Up = 2.57**
+
+### 2
+
+Dans la nouvelle stratégie (Cyclique), chaque processus calcule une moyenne de lignes faciles et difficiles. Le temps de calcul sera presque identique pour tous les rangs. Par conséquent, le speed-up sera beaucoup plus élévé, car personne n'attend inutilement.
+
+**Speed-Up = 3.27**
+
+le principal problème est la **complexité de reconstruction**: Le processus maître (Rank 0) doit effectuer une étape de post-traitement pour remettre les lignes dans le bon ordre.
+
+### 3
+
+La stratégie Maître-Esclave offre la meilleure robustesse face à l'irrégularité de l'ensemble de Mandelbrot. Elle lisse parfaitement le déséquilibre de charge observé avec le partitionnement par blocs.
+
+**speed up: 3.39**
+
+Cependant, pour un faible nombre de processeurs, la perte d'un cœur qui sera dédié uniquement à la gestion (le Maître) pénalise le speed-up global. Dans ce cas, la stratégie Maître-Esclave a obtenu en speedup similaire au speedup de la stratégie cyclique.
+
+
 ## 2
 
 Le **speed-up** est inférieur à 1 car l'**overhead** de communication lié à la parallélisation est supérieur 
 au temps d'exécution séquentiel des opérations. Il est probable qu'avec une matrice de dimensions plus importantes, 
 la parallélisation devienne plus efficace e t permette d'obtenir un speed-up supérieur à 1.
+
+Le speed-up du produit matrice-vecteur par partitionnement horizontal (lignes) est généralement supérieur à celui du partitionnement vertical (colonnes). Cela s'explique par le fait que l'opération de **réduction** (Allreduce avec somme arithmétique) est plus coûteuse que l'opération de **collecte** (Gather). Dans cette dernière, chaque tâche contribue simplement à une partie du vecteur final, sans nécessiter de calculs supplémentaires lors de la communication.
+
+
+## 3
+
+### 1
+
+1/f où f est la partie non parallélisable: 1/0.1 = 10.
+
+### 2
+
+Il semble raisonnable de choisir entre 9 et 10 nœuds de calcul.
+
+Avec 9 nœuds, nous obtenons un speed-up de 5, ce qui représente la moitié de l'accélération maximale théorique ($S_{max}=10$). À ce stade, l'efficacité parallèle ($E = \frac{S(n)}{n}$) est d'environ 55%.
+
+Choisir plus de nœuds ferait chuter l'efficacité en dessous du seuil critique de 50%, ce qui signifierait que plus de la moitié de la puissance de calcul serait gaspillée (rendement décroissant), sans gain significatif de performance.
+
+### 3
+
+La loi de Gustafson, prend en compte le fait qu'en augmentant la puissance de calcul, on tend généralement à augmenter la taille du problème traité (Weak Scaling).
+
+- Temps de la partie séquentielle ($T_{seq}$) : Il représente 0,1 unité de temps (les 10% initiaux).
+
+- Temps de la partie parallèle ($T_{par}$) : Puisque la complexité est linéaire, si on double les données, le travail double. $0,9 \times 2 =$ 1,8 unité de temps.
+
+- Pour l'accélération maximale on considère $n \to \infty$.
+
+$$S_{max\_nouveau} = \frac{\text{Travail Total Nouveau}}{\text{Partie Séquentielle}} = \frac{0,1 + 1,8}{0,1} = \frac{1,9}{0,1} = 19$$
+
+En doublant la quantité de données, la part du code parallélisable devient prépondérante par rapport à la partie séquentielle fixe. Alice peut donc espérer une nouvelle accélération maximale théorique de 19.

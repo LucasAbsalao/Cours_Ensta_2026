@@ -13,7 +13,7 @@ comGlobal = MPI.COMM_WORLD.Dup()
 rank      = comGlobal.rank
 nbp       = comGlobal.size
 
-bufferFilename = f"outputLine{rank:03d}.txt"
+bufferFilename = f"outputMatVecLine/outputLine{rank:03d}.txt"
 out = open(bufferFilename, 'w')
 
 # Dimension du problème (peut-être changé)

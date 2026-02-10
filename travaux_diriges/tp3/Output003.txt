@@ -1,0 +1,10 @@
+Nombre de valeurs locales : 10
+Valeurs initiales : [11 31 16 13 29  5 26 32  2 23]
+Valeurs initiales : [ 2  5 11 13 16 23 26 29 31 32]
+local quantiles: [ 5 16 29]
+global quantiles: [ 4  5  5  7  8 14 16 21 22 29 32 36]
+scatters: [np.int32(7), np.int32(16), np.int32(29)]
+Counts: [2 3 3 2]
+Counts in this bucket: [3 3 0 2]
+Received values for this bucket: [36 38 38 32 32 35 31 32]
+Bucket values sorted: [31 32 32 32 35 36 38 38]

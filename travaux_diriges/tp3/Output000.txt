@@ -1,0 +1,14 @@
+Nombre de valeurs locales : 10
+Valeurs initiales : [38 18 36  6  1 38 21 14  4  8]
+Valeurs initiales : [ 1  4  6  8 14 18 21 36 38 38]
+local quantiles: [ 4 14 36]
+global quantiles: [ 4  5  5  7  8 14 16 21 22 29 32 36]
+scatters: [np.int32(7), np.int32(16), np.int32(29)]
+Counts: [3 2 2 3]
+Counts in this bucket: [3 1 5 2]
+Received values for this bucket: [1 4 6 3 4 5 5 6 7 2 5]
+Bucket values sorted: [1 2 3 4 4 5 5 5 6 6 7]
+
+
+Ordered vector: [ 1  2  3  4  4  5  5  5  6  6  7  8  8  9 11 13 14 14 16 16 16 18 21 21
+ 22 23 23 24 26 27 27 29 31 32 32 32 35 36 38 38]

@@ -23,6 +23,7 @@ On itère ensuite pour étudier la façon dont évolue la population des cellule
 """
 import pygame  as pg
 import numpy   as np
+from mpi4py import MPI
 
 
 class Grille:
@@ -46,9 +47,14 @@ class Grille:
             indices_j = [v[1] for v in init_pattern]
             self.cells[indices_i,indices_j] = 1
         else:
-            self.cells = np.random.randint(2, size=dim, dtype=np.uint8)
+            self.cells = np.random.randint(2, size=dim, dtype=np.uint8, )
         self.col_life = color_life
         self.col_dead = color_dead
+
+    def change_diff_cells(self, diff_cells):
+        nx = self.dimensions[1]
+        for idx, state in diff_cells:
+            self.cells[idx//nx, idx%nx] = state
 
     def compute_next_iteration(self):
         """
@@ -74,12 +80,12 @@ class Grille:
                 if self.cells[i,j] == 1: # Si la cellule est vivante
                     if (nb_voisines_vivantes < 2) or (nb_voisines_vivantes > 3):
                         next_cells[i,j] = 0 # Cas de sous ou sur population, la cellule meurt
-                        diff_cells.append(i*nx+j)
+                        diff_cells.append((i*nx+j, 0))
                     else:
                         next_cells[i,j] = 1 # Sinon elle reste vivante
                 elif nb_voisines_vivantes == 3: # Cas où cellule morte mais entourée exactement de trois vivantes
                     next_cells[i,j] = 1         # Naissance de la cellule
-                    diff_cells.append(i*nx+j)
+                    diff_cells.append((i*nx+j, 1))
                 else:
                     next_cells[i,j] = 0         # Morte, elle reste morte.
         self.cells = next_cells
@@ -133,7 +139,15 @@ if __name__ == '__main__':
     import time
     import sys
 
-    pg.init()
+
+    globCom = MPI.COMM_WORLD.Dup()
+    nbp = globCom.size
+    rank = globCom.rank
+    name = MPI.Get_processor_name()
+
+    filename = f"Output{rank:03d}.txt"
+    out      = open(filename, mode='w')
+
     dico_patterns = { # Dimension et pattern dans un tuple
         'blinker' : ((5,5),[(2,1),(2,2),(2,3)]),
         'toad'    : ((6,6),[(2,2),(2,3),(2,4),(3,3),(3,4),(3,5)]),
@@ -158,26 +172,53 @@ if __name__ == '__main__':
     if len(sys.argv) > 3 :
         resx = int(sys.argv[2])
         resy = int(sys.argv[3])
-    print(f"Pattern initial choisi : {choice}")
-    print(f"resolution ecran : {resx,resy}")
+    out.write(f"Pattern initial choisi : {choice}")
+    out.write(f"resolution ecran : {resx,resy}")
     try:
         init_pattern = dico_patterns[choice]
     except KeyError:
-        print("No such pattern. Available ones are:", dico_patterns.keys())
+        out.write("No such pattern. Available ones are:", dico_patterns.keys())
         exit(1)
-    grid = Grille(*init_pattern)
-    appli = App((resx, resy), grid)
 
+    grid = Grille(*init_pattern)
+    if rank == 0:
+        globCom.send(grid.cells, dest=1)
+    else:
+        grid.cells = globCom.recv(source=0)
+
+    if rank==0:
+        pg.init()
+        appli = App((resx, resy), grid)
+
+    diff = grid.compute_next_iteration()
     mustContinue = True
     while mustContinue:
         #time.sleep(0.5) # A régler ou commenter pour vitesse maxi
-        t1 = time.time()
-        diff = grid.compute_next_iteration()
-        t2 = time.time()
-        appli.draw()
-        t3 = time.time()
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                mustContinue = False
-        print(f"Temps calcul prochaine generation : {t2-t1:2.2e} secondes, temps affichage : {t3-t2:2.2e} secondes\r", end='');
-    pg.quit()
+        if rank!=0:
+            req = globCom.isend(diff, dest=0, tag=101)
+            t1 = time.time()
+            diff = grid.compute_next_iteration()
+            t2 = time.time()
+            out.write(f"Temps calcul prochaine generation : {t2-t1:2.2e} secondes\n")
+            req.wait()
+
+            mustContinue = globCom.recv(source = 0)
+    
+
+        if rank==0:
+            req = globCom.irecv(source=MPI.ANY_SOURCE)
+            t1 = time.time()
+            appli.draw()
+            t2 = time.time()
+            out.write(f"temps affichage : {t2-t1:2.2e} secondes\n");
+            diff = req.wait()
+            grid.change_diff_cells(diff)
+
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    mustContinue = False
+
+            globCom.send(mustContinue, dest=1)
+
+    if rank==0:
+        pg.quit()

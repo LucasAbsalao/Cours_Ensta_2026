@@ -1,0 +1,206 @@
+=========================================
+Simulation gem5 - Multiplication Matrices
+=========================================
+Taille matrice: 32
+
+-------------------------------------------
+Exécution avec 1 threads...
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Nov  4 2015 17:49:05
+gem5 started Feb 17 2026 18:41:26
+gem5 executing on salle
+command line: /home/g/gbusnot/ES201/tools/TP5/gem5-stable/build/ARM/gem5.fast -d ./m5out/m5out_A7_1 /home/g/gbusnot/ES201/tools/TP5/gem5-stable/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n 1 -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o '1 32'
+
+Global frequency set at 1000000000000 ticks per second
+warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb.listener: listening for remote gdb on port 7000
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+FATAL: kernel too old
+warn: ignoring syscall rt_sigprocmask(1, ...)
+      (further warnings will be suppressed)
+panic: Page table fault when accessing virtual address 0xfffffba8
+ @ tick 5699500
+[invoke:build/ARM/sim/faults.cc, line 69]
+Memory Usage: 650628 KBytes
+Program aborted at cycle 5699500
+./run_a7.sh : ligne 24 : 21054 Abandon                 (core dumped) $GEM5/build/ARM/gem5.fast -d ./m5out/m5out_A7_$NTHREADS $GEM5/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n $NTHREADS -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o "$NTHREADS $MATRIX_SIZE"
+-------------------------------------------
+Exécution avec 2 threads...
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Nov  4 2015 17:49:05
+gem5 started Feb 17 2026 18:41:27
+gem5 executing on salle
+command line: /home/g/gbusnot/ES201/tools/TP5/gem5-stable/build/ARM/gem5.fast -d ./m5out/m5out_A7_2 /home/g/gbusnot/ES201/tools/TP5/gem5-stable/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n 2 -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o '2 32'
+
+Global frequency set at 1000000000000 ticks per second
+warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb.listener: listening for remote gdb on port 7000
+0: system.remote_gdb.listener: listening for remote gdb on port 7001
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+FATAL: kernel too old
+warn: ignoring syscall rt_sigprocmask(1, ...)
+      (further warnings will be suppressed)
+panic: Page table fault when accessing virtual address 0xfffffba8
+ @ tick 5699500
+[invoke:build/ARM/sim/faults.cc, line 69]
+Memory Usage: 653696 KBytes
+Program aborted at cycle 5699500
+./run_a7.sh : ligne 24 : 21056 Abandon                 (core dumped) $GEM5/build/ARM/gem5.fast -d ./m5out/m5out_A7_$NTHREADS $GEM5/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n $NTHREADS -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o "$NTHREADS $MATRIX_SIZE"
+-------------------------------------------
+Exécution avec 4 threads...
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Nov  4 2015 17:49:05
+gem5 started Feb 17 2026 18:41:28
+gem5 executing on salle
+command line: /home/g/gbusnot/ES201/tools/TP5/gem5-stable/build/ARM/gem5.fast -d ./m5out/m5out_A7_4 /home/g/gbusnot/ES201/tools/TP5/gem5-stable/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n 4 -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o '4 32'
+
+Global frequency set at 1000000000000 ticks per second
+warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb.listener: listening for remote gdb on port 7000
+0: system.remote_gdb.listener: listening for remote gdb on port 7001
+0: system.remote_gdb.listener: listening for remote gdb on port 7002
+0: system.remote_gdb.listener: listening for remote gdb on port 7003
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+FATAL: kernel too old
+warn: ignoring syscall rt_sigprocmask(1, ...)
+      (further warnings will be suppressed)
+panic: Page table fault when accessing virtual address 0xfffffba8
+ @ tick 5699500
+[invoke:build/ARM/sim/faults.cc, line 69]
+Memory Usage: 662660 KBytes
+Program aborted at cycle 5699500
+./run_a7.sh : ligne 24 : 21058 Abandon                 (core dumped) $GEM5/build/ARM/gem5.fast -d ./m5out/m5out_A7_$NTHREADS $GEM5/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n $NTHREADS -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o "$NTHREADS $MATRIX_SIZE"
+-------------------------------------------
+Exécution avec 8 threads...
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Nov  4 2015 17:49:05
+gem5 started Feb 17 2026 18:41:29
+gem5 executing on salle
+command line: /home/g/gbusnot/ES201/tools/TP5/gem5-stable/build/ARM/gem5.fast -d ./m5out/m5out_A7_8 /home/g/gbusnot/ES201/tools/TP5/gem5-stable/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n 8 -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o '8 32'
+
+Global frequency set at 1000000000000 ticks per second
+warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb.listener: listening for remote gdb on port 7000
+0: system.remote_gdb.listener: listening for remote gdb on port 7001
+0: system.remote_gdb.listener: listening for remote gdb on port 7002
+0: system.remote_gdb.listener: listening for remote gdb on port 7003
+0: system.remote_gdb.listener: listening for remote gdb on port 7004
+0: system.remote_gdb.listener: listening for remote gdb on port 7005
+0: system.remote_gdb.listener: listening for remote gdb on port 7006
+0: system.remote_gdb.listener: listening for remote gdb on port 7007
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+FATAL: kernel too old
+warn: ignoring syscall rt_sigprocmask(1, ...)
+      (further warnings will be suppressed)
+panic: Page table fault when accessing virtual address 0xfffffba8
+ @ tick 5699500
+[invoke:build/ARM/sim/faults.cc, line 69]
+Memory Usage: 680836 KBytes
+Program aborted at cycle 5699500
+./run_a7.sh : ligne 24 : 21061 Abandon                 (core dumped) $GEM5/build/ARM/gem5.fast -d ./m5out/m5out_A7_$NTHREADS $GEM5/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n $NTHREADS -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o "$NTHREADS $MATRIX_SIZE"
+-------------------------------------------
+Exécution avec 16 threads...
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Nov  4 2015 17:49:05
+gem5 started Feb 17 2026 18:41:30
+gem5 executing on salle
+command line: /home/g/gbusnot/ES201/tools/TP5/gem5-stable/build/ARM/gem5.fast -d ./m5out/m5out_A7_16 /home/g/gbusnot/ES201/tools/TP5/gem5-stable/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n 16 -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o '16 32'
+
+Global frequency set at 1000000000000 ticks per second
+warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb.listener: listening for remote gdb on port 7000
+0: system.remote_gdb.listener: listening for remote gdb on port 7001
+0: system.remote_gdb.listener: listening for remote gdb on port 7002
+0: system.remote_gdb.listener: listening for remote gdb on port 7003
+0: system.remote_gdb.listener: listening for remote gdb on port 7004
+0: system.remote_gdb.listener: listening for remote gdb on port 7005
+0: system.remote_gdb.listener: listening for remote gdb on port 7006
+0: system.remote_gdb.listener: listening for remote gdb on port 7007
+0: system.remote_gdb.listener: listening for remote gdb on port 7008
+0: system.remote_gdb.listener: listening for remote gdb on port 7009
+0: system.remote_gdb.listener: listening for remote gdb on port 7010
+0: system.remote_gdb.listener: listening for remote gdb on port 7011
+0: system.remote_gdb.listener: listening for remote gdb on port 7012
+0: system.remote_gdb.listener: listening for remote gdb on port 7013
+0: system.remote_gdb.listener: listening for remote gdb on port 7014
+0: system.remote_gdb.listener: listening for remote gdb on port 7015
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+FATAL: kernel too old
+warn: ignoring syscall rt_sigprocmask(1, ...)
+      (further warnings will be suppressed)
+panic: Page table fault when accessing virtual address 0xfffffba8
+ @ tick 5699500
+[invoke:build/ARM/sim/faults.cc, line 69]
+Memory Usage: 731520 KBytes
+Program aborted at cycle 5699500
+./run_a7.sh : ligne 24 : 21063 Abandon                 (core dumped) $GEM5/build/ARM/gem5.fast -d ./m5out/m5out_A7_$NTHREADS $GEM5/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n $NTHREADS -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o "$NTHREADS $MATRIX_SIZE"
+-------------------------------------------
+Exécution avec 32 threads...
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Nov  4 2015 17:49:05
+gem5 started Feb 17 2026 18:41:32
+gem5 executing on salle
+command line: /home/g/gbusnot/ES201/tools/TP5/gem5-stable/build/ARM/gem5.fast -d ./m5out/m5out_A7_32 /home/g/gbusnot/ES201/tools/TP5/gem5-stable/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n 32 -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o '32 32'
+
+Global frequency set at 1000000000000 ticks per second
+warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb.listener: listening for remote gdb on port 7000
+0: system.remote_gdb.listener: listening for remote gdb on port 7001
+0: system.remote_gdb.listener: listening for remote gdb on port 7002
+0: system.remote_gdb.listener: listening for remote gdb on port 7003
+0: system.remote_gdb.listener: listening for remote gdb on port 7004
+0: system.remote_gdb.listener: listening for remote gdb on port 7005
+0: system.remote_gdb.listener: listening for remote gdb on port 7006
+0: system.remote_gdb.listener: listening for remote gdb on port 7007
+0: system.remote_gdb.listener: listening for remote gdb on port 7008
+0: system.remote_gdb.listener: listening for remote gdb on port 7009
+0: system.remote_gdb.listener: listening for remote gdb on port 7010
+0: system.remote_gdb.listener: listening for remote gdb on port 7011
+0: system.remote_gdb.listener: listening for remote gdb on port 7012
+0: system.remote_gdb.listener: listening for remote gdb on port 7013
+0: system.remote_gdb.listener: listening for remote gdb on port 7014
+0: system.remote_gdb.listener: listening for remote gdb on port 7015
+0: system.remote_gdb.listener: listening for remote gdb on port 7016
+0: system.remote_gdb.listener: listening for remote gdb on port 7017
+0: system.remote_gdb.listener: listening for remote gdb on port 7018
+0: system.remote_gdb.listener: listening for remote gdb on port 7019
+0: system.remote_gdb.listener: listening for remote gdb on port 7020
+0: system.remote_gdb.listener: listening for remote gdb on port 7021
+0: system.remote_gdb.listener: listening for remote gdb on port 7022
+0: system.remote_gdb.listener: listening for remote gdb on port 7023
+0: system.remote_gdb.listener: listening for remote gdb on port 7024
+0: system.remote_gdb.listener: listening for remote gdb on port 7025
+0: system.remote_gdb.listener: listening for remote gdb on port 7026
+0: system.remote_gdb.listener: listening for remote gdb on port 7027
+0: system.remote_gdb.listener: listening for remote gdb on port 7028
+0: system.remote_gdb.listener: listening for remote gdb on port 7029
+0: system.remote_gdb.listener: listening for remote gdb on port 7030
+0: system.remote_gdb.listener: listening for remote gdb on port 7031
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+FATAL: kernel too old
+warn: ignoring syscall rt_sigprocmask(1, ...)
+      (further warnings will be suppressed)
+panic: Page table fault when accessing virtual address 0xfffffba8
+ @ tick 5699500
+[invoke:build/ARM/sim/faults.cc, line 69]
+Memory Usage: 874880 KBytes
+Program aborted at cycle 5699500
+./run_a7.sh : ligne 24 : 21065 Abandon                 (core dumped) $GEM5/build/ARM/gem5.fast -d ./m5out/m5out_A7_$NTHREADS $GEM5/configs/example/se.py --cpu-type=arm_detailed --caches --l2cache -n $NTHREADS -c /home/g/gbusnot/ES201/tools/TP5/m5threads/tests/test_omp -o "$NTHREADS $MATRIX_SIZE"
